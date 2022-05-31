@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const BOT = new Schema({
 	//! Bot Data
 	id: String, // DB Object ID
+	BOT_ID: String, // Bot ID
 	BANNED_GUILDS: Array, // Array of guild ids that are banned from using the bot
 	TOTAL_MESSAGES: Number, // Total number of messages sent as a Number
 	TOTAL_SERVERS: Number, // Total number of servers the bot is in as a Number

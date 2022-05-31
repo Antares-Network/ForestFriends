@@ -1,9 +1,9 @@
 import { Client } from "discord.js";
-import gateModel from "../models/gate";
+import botModel from "../models/bot";
 
 
 export default async (client: Client) => {
-	const doc = await gateModel.findOne({ NAME: "GATE" });
+	const doc = await botModel.findOne({ BOT_ID: process.env.BOT_ID });
 
 	const statusOptions = [
 		`/help | V.${process.env.VERSION}`,

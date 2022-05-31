@@ -3,7 +3,7 @@ import WOKCommands from "wokcommands";
 import path from "path";
 import dotenv from "dotenv";
 import chalk from "chalk";
-import gateModel from "./models/gate";
+import botModel from "./models/bot";
 dotenv.config();
 
 //Create a new discord client
@@ -37,7 +37,7 @@ client.on("ready", () => {
 		//Print some bot stats
 		console.log(`${chalk.yellow("I am in")} ${chalk.green((await client.guilds.fetch()).size)} ${chalk.yellow("servers")}`);
 		try {
-			const gate = await gateModel.findOne({ NAME: "GATE" });
+			const gate = await botModel.findOne({ BOT_ID: process.env.BOT_ID });
 			console.log(`${chalk.yellow("I am being used by")} ${chalk.green(gate.TOTAL_USERS)} ${chalk.yellow("users")}`);
 		} catch (e) {
 			console.log(e);
