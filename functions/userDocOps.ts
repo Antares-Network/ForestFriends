@@ -7,6 +7,9 @@ export async function bootCheck(client: Client) {
 			createUserDoc(client, user, "on boot");
 		}
 	});
+
+	//! Add a check for if a user has a document but is not in an active server, then set the USER_IN_ACTIVE_GUILD field to false
+	//! This would happen for example if a user leaves a server while the bot is offline
 }
 
 export async function checkIfUserDocExists(user: User): Promise<Boolean> {
