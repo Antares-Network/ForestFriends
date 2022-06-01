@@ -3,12 +3,13 @@ import WOKCommands from "wokcommands";
 import path from "path";
 import dotenv from "dotenv";
 import chalk from "chalk";
-import botModel from "./models/bot";
+import dbConnected from "./boot_func/dbConnected";
+import userDocCheck  from "./boot_func/userDocCheck";
 dotenv.config();
 
 //Create a new discord client
 const client = new DiscordJs.Client({
-	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES],
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]
 });
 
 client.on("ready", () => {
@@ -33,15 +34,14 @@ client.on("ready", () => {
 	}).setDefaultPrefix(String(process.env.BOT_DEFAULT_PREFIX));
 
 	wok.on("databaseConnected", async () => {
-		console.log(chalk.green("Connected to MongoDB"));
-		//Print some bot stats
-		console.log(`${chalk.yellow("I am in")} ${chalk.green((await client.guilds.fetch()).size)} ${chalk.yellow("servers")}`);
-		try {
-			const gate = await botModel.findOne({ BOT_ID: process.env.BOT_ID });
-			console.log(`${chalk.yellow("I am being used by")} ${chalk.green(gate.TOTAL_USERS)} ${chalk.yellow("users")}`);
-		} catch (e) {
-			console.log(e);
-		}
+		dbConnected.event(client);
+		setTimeout(async () => {
+			userDocCheck(client)
+		}, 1000 * 60 * 1);
+
+
+		//guildDocCheck(client);
+		//botDocCheck(client);
 	});
 });
 

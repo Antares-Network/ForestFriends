@@ -3,8 +3,8 @@ import mongoose, { Schema } from "mongoose";
 const USER = new Schema({
 	//! User Data
 	id: String, // DB Object ID
-	USERNAME: String, // Username with discriminator
 	USER_ID: String, // Discord User ID
+	USERNAME: String, // Username with discriminator
 	IS_GUILD_OWNER: Boolean, // Is the user the owner of the guild
 	OWNED_GUILD_IDS: Array, // Array of guild ids that the user owns (if any)
 
@@ -21,6 +21,8 @@ const USER = new Schema({
 	TOTAL_COMMANDS_USED: Number, // Total number of commands used as a Number
 	TOTAL_WEB_DASHBOARD_LOGINS: Number, // Total number of web dashboard logins as a Number
 	DATE_OF_LAST_SETTINGS_CHANGE: Date, // Date of last settings change
+	DATE_OF_USER_IMPORT: Date, // Date of user import
+	USER_IN_ACTIVE_GUILD: Boolean, // If the user is in an active guild
 
 	//! Authentication Data:
 	//? No Data Yet
