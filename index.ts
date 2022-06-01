@@ -4,12 +4,12 @@ import path from "path";
 import dotenv from "dotenv";
 import chalk from "chalk";
 import dbConnected from "./boot_func/dbConnected";
-import userDocCheck  from "./boot_func/userDocCheck";
+import { bootCheck }  from "./functions/userDocOps";
 dotenv.config();
 
 //Create a new discord client
 const client = new DiscordJs.Client({
-	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES]
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILD_PRESENCES]
 });
 
 client.on("ready", () => {
@@ -35,11 +35,7 @@ client.on("ready", () => {
 
 	wok.on("databaseConnected", async () => {
 		dbConnected.event(client);
-		setTimeout(async () => {
-			userDocCheck(client)
-		}, 1000 * 60 * 1);
-
-
+		bootCheck(client);
 		//guildDocCheck(client);
 		//botDocCheck(client);
 	});
