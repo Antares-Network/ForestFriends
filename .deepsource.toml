@@ -1,9 +1,5 @@
 version = 1
 
-test_patterns = ["/index.ts"]
-
-exclude_patterns = ["/node_modules/**"]
-
 [[analyzers]]
 name = "test-coverage"
 enabled = true
@@ -17,4 +13,4 @@ enabled = true
 
 [[transformers]]
 name = "prettier"
-enabled = true
+enabled = false
