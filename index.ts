@@ -6,6 +6,7 @@ import chalk from "chalk";
 import dbConnected from "./boot_func/dbConnected";
 import { bootCheck as userBootCheck } from "./functions/userDocOps";
 import { bootCheck as guildBootCheck }from "./functions/guildDocOps";
+import { bootCheck as botBootCheck } from "./functions/botDocOps";
 dotenv.config();
 
 //Create a new discord client
@@ -14,7 +15,7 @@ const client = new DiscordJs.Client({
 });
 
 client.on("ready", () => {
-	if (client.user) console.log(`Logged in as`, `${chalk.magenta(client.user.tag)}`);
+	if (client.user) console.log(`\n\n\n\n\n\n\n\n\n\n\n\n\nLogged in as ${chalk.magenta(client.user.tag)}`);
 
 	//give WOK a db connection
 	const dbOptions = {
@@ -38,6 +39,7 @@ client.on("ready", () => {
 		dbConnected.event(client);
 		guildBootCheck(client);
 		userBootCheck(client);
+		botBootCheck(client);
 	});
 });
 
