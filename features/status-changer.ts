@@ -7,11 +7,11 @@ export default async (client: Client) => {
 
 	const statusOptions = [
 		`/help | V.${process.env.VERSION}`,
-		//`/help | ${doc.TOTAL_SERVERS} Servers`,
+		`/help | ${client.guilds.cache.size} Servers`,
 		`/help | playantares.com`,
-		//`/help | ${doc.TOTAL_SERVERS} Servers`,
+		`/help | ${client.guilds.cache.size} Servers`,
 		`/help | nathen418.com`,
-		//`/help | ${doc.TOTAL_SERVERS} Servers`,
+		`/help | ${client.guilds.cache.size} Servers`,
 		`/help | status.playantares.com`,
 	];
 	let counter = 0;
