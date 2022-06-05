@@ -1,4 +1,4 @@
-#Outline
+# Outline
 
 - React website where users can log in with discord oAuth and sign up for scheduled repeating dms of a forest animal of their choice.
 - Server owners can also log in and subscribe a channel to the same system as above.
