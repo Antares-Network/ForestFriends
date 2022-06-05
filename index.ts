@@ -4,7 +4,8 @@ import path from "path";
 import dotenv from "dotenv";
 import chalk from "chalk";
 import dbConnected from "./boot_func/dbConnected";
-import { bootCheck }  from "./functions/userDocOps";
+import { bootCheck as userBootCheck } from "./functions/userDocOps";
+import { bootCheck as guildBootCheck }from "./functions/guildDocOps";
 dotenv.config();
 
 //Create a new discord client
@@ -35,9 +36,8 @@ client.on("ready", () => {
 
 	wok.on("databaseConnected", async () => {
 		dbConnected.event(client);
-		bootCheck(client);
-		//guildDocCheck(client);
-		//botDocCheck(client);
+		guildBootCheck(client);
+		userBootCheck(client);
 	});
 });
 
